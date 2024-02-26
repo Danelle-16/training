@@ -1,0 +1,242 @@
+What is Customer Connect?
+Customer Connect is an easy-to-understand name given to Zuppler's order workflow feature that gives visibility into the status of the orders. A workflow is a map of a process that flows through sequential steps. 
+The order workflow automates sending email and SMS notifications to your restaurant/food business as well as your customers to keep you and them informed about the status of the orders.
+Customers can also track their order status displayed and updated on their order confirmation page after successfully placing the order.
+Below is the screenshot showing how a full list of order statuses with time and description will appear to the customers:
+ 
+ 
+Components of Customer Connect
+Here is the list of components used in the Customer Connect feature:
+●	Node – it’s a state/step the order flows through (identified by the enclosed rectangular or eclipse figures). It includes elements such as info and action (or actions) to be carried out on reaching a particular node.
+●	Info – includes name and description of the node. (Only the name is visible in the node.)
+●	Action – an operation performed by a node when the order reaches a particular node. We have several predefined actions within our system.
+●	Transition – a transition is a flow represented by the arrow (as shown in the following screenshot) that marks the direction of the order. The arrow turns green showing which path/flow has taken by the order.
+●	Events – the event is an outcome that triggers the order to move from one node to the other when a certain type of action/condition takes place. Events may include signals, calls, the passage of time, or simply a state change.
+ 
+ 
+Note: The node highlighted in orange color shows the current state of the order in the workflow as shown below:
+ 
+
+
+Components of Customer Connect
+Here is the list of components used in the Customer Connect feature:
+●	Node – it’s a state/step the order flows through (identified by the enclosed rectangular or eclipse figures). It includes elements such as info and action (or actions) to be carried out on reaching a particular node.
+●	Info – includes name and description of the node. (Only the name is visible in the node.)
+●	Action – an operation performed by a node when the order reaches a particular node. We have several predefined actions within our system.
+●	Transition – a transition is a flow represented by the arrow (as shown in the following screenshot) that marks the direction of the order. The arrow turns green showing which path/flow has taken by the order.
+●	Events – the event is an outcome that triggers the order to move from one node to the other when a certain type of action/condition takes place. Events may include signals, calls, the passage of time, or simply a state change.
+Standard workflow
+A fully customized workflow can be designed for your restaurant or food business based on your requirements, however, the Standard workflow is the default workflow created to serve all the basic purposes of your business as well as customers.
+ 
+Features of the Standard workflow
+●	The workflow supports all four service types – delivery, curbside, pickup, and dine-in. 
+●	You can accept or reject the orders from the emails they receive, in the Customer Service app, and from the OrderZupp app.
+●	The order workflow supports the Billing 2.0 system.
+●	For the curbside order, the customer is notified via an email or SMS to click on the "Arrived" button to notify you that they have arrived at the curbside.
+●	Custom messages such as email or SMS templates are used to notify you as well as your customers. These text templates can be customized to match your brand identity, such as brand colors, fonts, layouts, and so on.
+●	The status of the order is updated in the Customer Service app.
+●	You can add additional time to the order after confirming the order and update the customer about the new time using SMS or email. 
+●	An email is sent to the customer within 24 hours to review the order.
+●	
+Standard workflow elements 
+●	List of Sub-flows based on service types –
+○	Curbside_flow
+○	Dinein_flow
+○	Delivery_flow
+○	Pickup_flow
+ 
+List of nodes
+See the following table of nodes with their descriptions that are used in the Standard workflow:
+Nodes	Description
+Order created	Customer has pressed the pay button after entering the card details
+Order placed	Payment is processing
+Order sent	Order is sent to the restaurant/food business
+Fail payment	Credit card couldn’t be processed
+Order confirmed	Order is confirmed, starting preparation
+Waiting confirmation…	Working on confirming their order
+Working on your curbside order	Curbside order process is initiated
+Order ready	Order is ready for pickup
+Order delayed	Order is running late
+Customer arrived	Customer is waiting outside, take the food to the curbside
+Order canceled by restaurant	Order has been canceled by the restaurant/food business
+Working on your delivery order	Delivery order process initiated
+Out for delivery 	Order is out for delivery 
+Working on your pickup order	Pickup order process initiated
+Working on your dinein order	Dinein order process initiated
+Order completed	Order has been completed
+Feedback 	Customers are notified to provide feedback to the food and service
+Abandon cart	User abandoned cart (customer added the items but didn’t place the order)
+Order canceled by user	Order has been canceled by the user
+ 
+ 
+List of actions
+See the following table of actions with their descriptions that are used in the Standard workflow:
+Actions	Description
+SubscribePayment	For card payments, saving cards on profiles, and so on.
+Mark as accepted/executing /missed/prepared/confirmed/canceled/	To set the state of the order in the CS app
+Pay	Pay is an action defined in the system that is actually going to charge the customer’s card for a credit card order.
+If curbside order execute curbside_flow;
+If delivery order execute delivery_order;
+If pickup order execute pickup_order;
+If dinein order execute dinein_order	Depending upon the service type, the order will follow the order flow respectively.
+RestaurantServiceEmail	Send an email to the restaurant/food business about the order being placed. It includes the order details with the accept order and reject order buttons.
+CustomerServiceMsg	Notification in the CS app to accept or reject the order
+UserSMS	SMS service for the users
+UserEmail	Email service for the users
+CancelPay	Cancel the payment and refund the amount.
+NotifyLoyalty	Notify the loyalty programs about the canceled order
+AppMsg	Push notification to the OrderZupp app to update the restaurant about the time of the order
+ 
+Other actions 
+Restricted - a system-generated event meaning no user, CS agent, or restaurant staff can interfere in that event.
+Manual – a manual action taken either by the restaurant or the customer by clicking a button.
+ 
+Notification templates used in the workflow
+Note: Templates are fully customized to match the look and feel of your brand.
+The texts attached to "w/t" (shorthand of "with") in the following screenshot are the notification templates used with the actions in the nodes:
+ 
+List of notification templates used in the workflow -
+○	Abandoned order
+○	Payment Failure
+○	Restaurant Order
+○	Confirmation Delayed
+○	Cancel Order for User
+○	User Order Confirmation
+○	Order Running Late
+○	Ready for Pickup
+○	Curbside Arrived
+○	Order Cancel for Restaurant
+○	Ready for Delivery
+○	Feedback Request
+ 
+ 
+List of events
+See the following table of events and their descriptions used in the Standard workflow:
+Events	Description
+t=25m	Order created but not placed in 25 mins
+place_order	An outcome that gets published when the action called "subscribe payment" returns a success
+order_paid	Transaction successful
+fail_payment	Transaction failed
+confirm_order	Restaurant/food business accepted the order
+cancel_order	Restaurant/food business has rejected the order
+t=5m	Order will move to the Waiting Confirmation node if the restaurant doesn’t respond to the order email in 5 minutes
+curbside_flow	Order follows the curbside flow
+pickup_flow	Order follows the pickup flow
+delivery_flow	Order follows the delivery flow
+dinein_flow	Order follows the dinein flow
+s: after pickup_time	Restaurant/food business has re-adjusted the time for pickup order (the order is delayed)
+cancel	Order cancel option made available for the customers 
+order_ready	Order is ready to be picked up
+s: 1h after order_time	Order will move to the Order Completed node after 1 hour of the actual order time
+arrived	Customer has clicked on the Arrived button and is waiting outside
+picked_up	Order moved to the Order Completed node as the order has been picked up by the customer
+s: 2h after order_time	Order will automatically move to the Order Completed node after 2 hours of the order time
+out_for_delivery	Order is set out for delivery
+order_delivered	Order moves to the Order Completed node as the order has been delivered
+s: after order_time
+(in pickup order)	Order moves to the Order Delayed node for running late
+s: after order_time
+(in dinein order)	Order moves to the Order Completed node post order time
+t=24h	Customer will receive a feedback email tafter 24 hours of placing the order.
+ 
+ 
+Other events – event-based triggers
+ 
+ 
+○	On time updated: 
+On time adjustment, this event triggers the AppMsg action (a push notification to the OrderZupp) and UserSMS (sending SMS to the users) updating them about the new time.
+ 
+○	Order adjustment:
+The order can be adjusted in the customer service app.
+When the adjustment takes place on the order post the order confirmation, then a push notification is sent via OrderZupp app to the restaurants, and an SMS is sent to the customer. The notification is also sent to loyalty notifying them to make the changes to award points to the users accordingly.
+On fail adjustment also follows the same process.
+ 
+○	On refund do:
+It is the refund process that takes place by notifying the users using the push notifications and SMS, while notifying the loyalty programs.
+On fail refund also follows the same process.
+
+A curbside pickup order is a service by which the customer can collect their order while remaining seated in their vehicles. And the restaurant staff brings the order to them.
+Here is the process defined in the curbside order flow on how the order goes through different states/steps from the order placement to the order picked up by the guest.
+Once the customer places a curbside order, they can track the order status on the order confirmation page (as shown in the following screenshot).
+ 
+ 
+You can find the order workflow under the Support tab of the order in the Customer Service app.
+>> Go to customer-service.zuppler.com > select an order > Support tab
+Here, under the Support tab, you can see the entire workflow of the order. Follow the demonstration of the curbside flow in the order workflow to understand how it works. 
+1. In this case, the order is in the order placed node, which means that the order has been placed and is awaiting confirmation from your end. 
+ 
+ 
+2. Once you click the Confirm Order button,
+ 
+ 
+an email and SMS are sent to the customer notifying them about the confirmation of their order placed.
+Below is an example of the SMS that goes to the customer. It includes the details about the type of order placed and the confirmation code.
+ 
+ 
+3. When the order is ready to be picked up by the customer, you can hit the Order Ready button.
+(the order follows the Curbside Order flow)
+ 
+ 
+4. On arrival, the customer can hit on the ARRIVED button to notify you that they have reached and are waiting at the curbside.
+ 
+Note: Customers will also receive an SMS containing the link to the page where they can click on the "arrived" button.
+ 
+ 
+(With this, the order moves to the Customer Arrived node)
+ 
+ 
+Now, once your staff member goes out to hand over the order to the customer, you can mark it as “Picked Up”.
+ 
+  
+Refresh the page to see the updated status. You can also click on the radio buttons to track the order status.
+ 
+ 
+(The order has reached the Order Completed node)
+ 
+Note: For a curbside order, you can mark the order as Completed if the user doesn’t click on the link and goes into your store to collect the order.
+The complete order status along with their time will be visible to the customers as shown below –
+ 
+
+A curbside pickup order is a service by which the customer can collect their order while remaining seated in their vehicles. And the restaurant staff brings the order to them.
+Here is the process defined in the curbside order flow on how the order goes through different states/steps from the order placement to the order picked up by the guest.
+Once the customer places a curbside order, they can track the order status on the order confirmation page (as shown in the following screenshot).
+ 
+ 
+You can find the order workflow under the Support tab of the order in the Customer Service app.
+>> Go to customer-service.zuppler.com > select an order > Support tab
+Here, under the Support tab, you can see the entire workflow of the order. Follow the demonstration of the curbside flow in the order workflow to understand how it works. 
+1. In this case, the order is in the order placed node, which means that the order has been placed and is awaiting confirmation from your end. 
+ 
+ 
+2. Once you click the Confirm Order button,
+ 
+ 
+an email and SMS are sent to the customer notifying them about the confirmation of their order placed.
+Below is an example of the SMS that goes to the customer. It includes the details about the type of order placed and the confirmation code.
+ 
+ 
+3. When the order is ready to be picked up by the customer, you can hit the Order Ready button.
+(the order follows the Curbside Order flow)
+ 
+ 
+4. On arrival, the customer can hit on the ARRIVED button to notify you that they have reached and are waiting at the curbside.
+ 
+Note: Customers will also receive an SMS containing the link to the page where they can click on the "arrived" button.
+ 
+ 
+(With this, the order moves to the Customer Arrived node)
+ 
+ 
+Now, once your staff member goes out to hand over the order to the customer, you can mark it as “Picked Up”.
+ 
+  
+Refresh the page to see the updated status. You can also click on the radio buttons to track the order status.
+ 
+ 
+(The order has reached the Order Completed node)
+ 
+Note: For a curbside order, you can mark the order as Completed if the user doesn’t click on the link and goes into your store to collect the order.
+The complete order status along with their time will be visible to the customers as shown below –
+ 
+
+
